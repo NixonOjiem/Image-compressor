@@ -79,7 +79,7 @@ function BasicContent() {
           <h3>Compressed Files:</h3>
           <ul>
             {compressedFiles.map((file, index) => (
-              <li key={index}>
+              <li key={index} className='My-compressed-list'>
                 <a href={URL.createObjectURL(file)} download={file.name}>
                   {file.name}
                 </a>

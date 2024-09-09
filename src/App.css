@@ -93,3 +93,12 @@
   transition-timing-function: ease-in-out;
   background-color: rgb(130, 178, 251);
 }
+.My-compressed-list{
+  list-style: none;
+}
+.My-compressed-list a{
+  text-decoration: none;
+}
+h3{
+  margin: 2vh;  
+}
