@@ -1,20 +1,62 @@
 import React, { useState } from 'react';
 import picture from '../Pics/icons8-picture-64.png';
+import imageCompression from 'browser-image-compression';
 
 function BasicContent() {
+  const [fileNames, setFileNames] = useState([]);
+  const [compressedFiles, setCompressedFiles] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    const [fileNames, setFileNames] = useState([]);
+  const handleFileChange = (event) => {
+    const files = event.target.files;
+    const newFileNames = [...fileNames];
 
-    const handleFileChange = (event) => {
-      const files = event.target.files;
-      const newFileNames = [...fileNames]; // create a copy of the existing file names
-    
-      for (let i = 0; i < files.length; i++) {
-        newFileNames.push(files[i].name);
-      }
-    
-      setFileNames(newFileNames);
-    };
+    for (let i = 0; i < files.length; i++) {
+      newFileNames.push(files[i].name);
+    }
+
+    setFileNames(newFileNames);
+  };
+
+  const handleCompress = async () => {
+    setLoading(true);
+    const compressedFilesList = [];
+
+    for (let i = 0; i < fileNames.length; i++) {
+      const file = await fetchFile(fileNames[i]);
+      const compressedFile = await compressImage(file);
+      compressedFilesList.push(compressedFile);
+    }
+
+    setCompressedFiles(compressedFilesList);
+    setLoading(false);
+  };
+
+  const fetchFile = (fileName) => {
+    return new Promise((resolve, reject) => {
+      const fileInput = document.getElementById('imageInput');
+      const file = Array.from(fileInput.files).find((file) => file.name === fileName);
+      resolve(file);
+    });
+  };
+
+  const compressImage = (file) => {
+    return new Promise((resolve, reject) => {
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true
+      };
+
+      imageCompression(file, options)
+        .then((compressedFile) => {
+          resolve(compressedFile);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
 
   return (
     <div className='Introduction-content'>
@@ -29,7 +71,23 @@ function BasicContent() {
         <img src={picture}></img>
       </div>
       <div id="file-names">Files uploaded: {fileNames.join(', ')}</div>
-      <button className='Compress-Button'>Compress Image</button>
+      <button className='Compress-Button' onClick={handleCompress} disabled={loading}>
+        {loading ? 'Compressing...' : 'Compress Image'}
+      </button>
+      {compressedFiles.length > 0 && (
+        <div>
+          <h3>Compressed Files:</h3>
+          <ul>
+            {compressedFiles.map((file, index) => (
+              <li key={index}>
+                <a href={URL.createObjectURL(file)} download={file.name}>
+                  {file.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
