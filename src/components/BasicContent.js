@@ -28,7 +28,8 @@ function BasicContent() {
         <input type="file" id="imageInput" accept="image/*" multiple onChange={handleFileChange} />
         <img src={picture}></img>
       </div>
-      <div id="file-names">Uploaded: {fileNames.join(', ')}</div>
+      <div id="file-names">Files uploaded: {fileNames.join(', ')}</div>
+      <button className='Compress-Button'>Compress Image</button>
     </div>
   );
 }
