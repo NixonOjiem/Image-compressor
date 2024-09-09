@@ -68,7 +68,7 @@ function BasicContent() {
       </p>
       <div className='triangle-input'>
         <input type="file" id="imageInput" accept="image/*" multiple onChange={handleFileChange} />
-        <img src={picture}></img>
+        <img src={picture} />
       </div>
       <div id="file-names">Files uploaded: {fileNames.join(', ')}</div>
       <button className='Compress-Button' onClick={handleCompress} disabled={loading}>

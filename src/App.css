@@ -102,3 +102,23 @@
 h3{
   margin: 2vh;  
 }
+@media screen and (max-width: 500px) {
+  .Navigation-bar{
+    background-color: #fff;
+    overflow: auto;
+    align-items: center;
+    height: 10vh;
+    justify-content: center;
+    display: block;
+
+  }
+  .Navigation-bar h3{
+    margin-top: 20px;
+    position:absolute;
+    }
+    .List-items{
+      display: block;
+      list-style: none;
+      margin-top: 20px;
+    }
+}
