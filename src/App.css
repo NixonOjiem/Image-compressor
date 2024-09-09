@@ -16,16 +16,21 @@
   justify-content: center;
 }
 .Navigation-bar h3{
+  margin-top: 20px;
   position:absolute;
+  margin-left: 10vw;
 }
 .List-items{
   display: flex;
   list-style: none;
   float: right;
+  margin-top: 20px;
+  margin-right: 20v;
 }
 .List-items li a{
   padding: 15px;
   margin: 10px;
+  
 }
 .List-items li a:hover{
   color: #e4e2e2;
@@ -40,6 +45,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 5vh;
 }
 .triangle-input {
   position: relative;
@@ -49,18 +55,13 @@
   background-color: #ffffff;
   border-radius: 5px;
   border-color: #000;
+  margin-top: 5vh;
+  display: grid; /* add this line */
+  place-items: center; /* add this line */
 }
 
-.triangle-input::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 100px 100px 0 100px;
-  border-color: #f0f0f0 transparent transparent transparent;
+.triangle-input::after {
+  content: "Click to upload your pictures";
 }
 
 .triangle-input input[type="file"] {
@@ -71,4 +72,13 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+.Heading{
+  margin-top: 3vh;
+}
+.Paragraph{
+  margin-top: 5vh;
+}
+#file-names{
+  margin-top: 5vh;
 }
