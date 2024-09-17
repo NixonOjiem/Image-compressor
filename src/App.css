@@ -30,6 +30,8 @@
 .List-items li a{
   padding: 15px;
   margin: 10px;
+  color: #000;
+  text-decoration: none;
   
 }
 .List-items li a:hover{
@@ -106,19 +108,31 @@ h3{
   .Navigation-bar{
     background-color: #fff;
     overflow: auto;
-    align-items: center;
-    height: 10vh;
-    justify-content: center;
-    display: block;
-
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: center;
+    height: auto;
+    overflow-y: hidden;
   }
   .Navigation-bar h3{
-    margin-top: 20px;
-    position:absolute;
-    }
-    .List-items{
-      display: block;
-      list-style: none;
-      margin-top: 20px;
-    }
+    margin-top: 0px;
+    position:relative;
+    margin: 0px;
+  }
+  .List-items{
+    display: block;
+    list-style: none;
+    margin: 0px;
+  }
+  .List-items li {
+    display: flex;
+    justify-content: center;
+  }
+  .List-items li a {
+    display: block;
+    height: 5px; /* adjust the height as needed */
+    padding: 5px; /* adjust the padding as needed */
+  }
 }
+
